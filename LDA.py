@@ -8,14 +8,14 @@ class LDA:
     def fit(self, X, y):
         """
         Выполняет fit модели LDA.
-        Параметры:
+        Args:
         ----------
         X : numpy.ndarray
             Матрица признаков размерностью (n_samples, n_features).
         y : numpy.ndarray
             Вектор меток классов размерностью (n_samples,).
 
-        Возвращает: None
+        Returns: self
         -----------
         """
 
@@ -45,6 +45,7 @@ class LDA:
         # Get the eigenvectors that correspond to the n_components largest eigenvalues
         eigenvectors = eigenvectors[:, np.argsort(eigenvalues)[::-1]]
         self.linear_discriminants = eigenvectors[:, :self.n_components]
+        return self
 
     def transform(self, X):
         return np.dot(X, self.linear_discriminants)
